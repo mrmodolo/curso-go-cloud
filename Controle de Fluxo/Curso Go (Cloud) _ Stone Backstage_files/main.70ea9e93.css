@@ -1,0 +1,100 @@
+#sysMapErrorMissingFieldsTitle {
+    text-transform: uppercase;
+    border: 1px solid #CE6278;
+    padding: 10px 20px;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.sysMapBtnContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.sysMapPulse {
+    animation-name: sysMapErrBtn;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    position: absolute;
+    border-radius: 5px;
+}
+
+.sysMapButton {
+    height: 100%;
+}
+
+#sysMapInfoContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.sysMapInfoItem {
+    min-width: 200px;
+    margin: 0 40px 40px 0px;
+}
+
+.sysMapInfoTitleField {
+    font-size: 10px !important;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.sysMapInfoValueField {
+    font-size: 0.875rem !important;
+    font-weight: bold;
+    word-break: break-word;
+    letter-spacing: 0.5px;
+}
+
+.divider {
+    width: calc(100% + 32px);
+    margin-left: -16px !important;
+}
+
+#sysMapRedirectDocs {
+    margin-top: 15px !important;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.smRedirects {
+    display: flex;
+    align-items: center;
+}
+
+@keyframes sysMapErrBtn {
+    from {
+        width: calc(100% - 0px);
+        height: calc(100% - 0px);
+        background-color: #FFF;
+        box-shadow: 0px 0px 2px 2px #fff;
+    }
+
+    to {
+        width: calc(100% + 35px);
+        height: calc(100% + 35px);
+        background-color: transparent;
+    }
+}
+.groupBox {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap;
+}
+
+.groupBoxTitle {
+    font-weight: bold !important;
+    margin-bottom: -7px !important;
+}
+
+.control {
+    margin-top: 10px !important;
+}
+
+/*# sourceMappingURL=main.70ea9e93.css.map*/
