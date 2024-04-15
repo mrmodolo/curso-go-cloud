@@ -9,11 +9,10 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"log"
 	"os"
 	"os/signal"
+	"sort"
 	"strings"
 	"syscall"
 	"unicode"
@@ -62,25 +61,40 @@ func prompt(message string) (rune, error) {
 	return unicode.ToLower(letra), nil
 }
 
+func letrasNaPalavra(palavra string) map[rune]int {
+	letras := make(map[rune]int)
+	for _, c := range palavra {
+		letras[c] = letras[c] + 1
+	}
+	return letras
+}
+
+func letraMenosRepetidas(letras map[rune]int) rune {
+	keys := make([]rune, 0, len(letras))
+	for key := range letras {
+		keys = append(keys, key)
+	}
+	sort.Slice(keys, func(i, j int) bool { return letras[keys[i]] < letras[keys[j]] })
+	return keys[0]
+}
+
 func init() {
 	c := make(chan os.Signal, 1)
-	signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
+	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
 	go func() {
-		br := bufio.NewWriter(os.Stdout)
-		logger := log.New(br, "", log.Ldate)
-		s := <-c
-		br.Flush()
-		logger.Print(s)
-		br.Flush()
+		<-c
+		fmt.Print("\nAdeus 😭\n")
 		os.Exit(1)
 	}()
 }
 
 func main() {
-	acertos := ""
 	erros := ""
 	tentativas := max(len(palavra), numeroMaximoTentativas)
 	tentativa := 1
+	letras := letrasNaPalavra(palavra)
+	menosRepetida := letraMenosRepetidas(letras)
+	acertos := string(menosRepetida)
 	for {
 
 		if tentativa > tentativas {
